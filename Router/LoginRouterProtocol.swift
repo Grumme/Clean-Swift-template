@@ -1,5 +1,5 @@
 import UIKit
 
-protocol LoginRouterProtocol {
-    func routeToSomewhere(segue: UIStoryboardSegue?, routeModel: RouteModelProtocol?)
+@objc protocol LoginRouterProtocol {
+    func routeToSignUp(segue: UIStoryboardSegue?)
 }

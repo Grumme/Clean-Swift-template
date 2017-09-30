@@ -1,44 +1,49 @@
 import UIKit
 
-class LoginRouter: NSObject {
+protocol LoginDataPassing {
+    var routeModel: RouteModelProtocol? { get set }
+}
+
+class LoginRouter: NSObject, LoginDataPassing {
     
     weak var viewController: LoginViewController?
-    
-    init(viewController: LoginViewController) {
-        self.viewController = viewController
-    }
+    var routeModel: RouteModelProtocol?
     
     // MARK: Routing
+    func navigateToSignUp(source: LoginViewController, destination: SomeViewController) {
+        source.navigationController?.pushViewController(destination, animated: true)
+    }
     
-    func routeToSomewhere(segue: UIStoryboardSegue?, routeModel: RouteModelProtocol?) {
-        if let segue = segue {
-            guard let toVc = segue.destination as? ShowOrdersViewController,
-                  let toPresenter = toVc.eventHandler as? ShowOrdersPresenter,
-                  let routeModel = routeModel as? ShowOrdersRouteModel else {
-                    return
-            }
-            
-            //Passing data with routeModel
-            toPresenter.setRouteModel(model: routeModel)
-        } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            guard let toVc = storyboard.instantiateViewController(withIdentifier: "ShowOrdersViewController") as? ShowOrdersViewController,
-                let toPresenter = toVc.eventHandler as? ShowOrdersPresenter,
-                let routeModel = routeModel as? ShowOrdersRouteModel else {
-                    return
-            }
-            
-            //Passing data with routeModel
-            toPresenter.setRouteModel(model: routeModel)
-            
-            navigateToSomewhere(source: viewController!, destination: toVc)
+    // MARK: Passing data
+    func passDataToSignUp(routeModel: RouteModelProtocol?, destination: Any) {
+        guard let toVc = destination as? SomeViewController,
+            let toPresenter = toVc.eventHandler as? SomePresenter else {
+                return
         }
+        
+        toPresenter.routeModel = routeModel
     }
 }
 
 extension LoginRouter: LoginRouterProtocol {
-    func navigateToSomewhere(source: LoginViewController, destination: ShowOrdersViewController) {
-        source.show(destination, sender: nil)
+    func routeToSignUp(segue: UIStoryboardSegue?) {
+        if let segue = segue {
+            guard let toVc = segue.destination as? SomeViewController else {
+                return
+            }
+            
+            passDataToSignUp(routeModel: routeModel, destination: toVc)
+            
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let fromVc = viewController,
+                let toVc = storyboard.instantiateViewController(withIdentifier: "SomeViewController") as? SomeViewController else {
+                    return
+            }
+            
+            passDataToSignUp(routeModel: routeModel, destination: toVc)
+            navigateToSignUp(source: fromVc, destination: toVc)
+        }
     }
 }
+

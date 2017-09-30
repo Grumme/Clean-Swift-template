@@ -1,15 +1,13 @@
 import UIKit
 
 class LoginPresenter {
-    weak var viewController: LoginViewControllerProtocol?
+    weak var viewController: LoginViewController?
     lazy var interactor: LoginInteractorProtocol = LoginInteractor(presenter: self)
-    weak var router: (NSObjectProtocol & LoginRouterProtocol)?
-
-    var routeModel: LoginRouteModel?
+    
+    var routeModel: RouteModelProtocol?
     
     init(viewController: LoginViewController) {
         self.viewController = viewController
-        self.router = LoginRouter(viewController: viewController)
     }
     
     func refreshViewModel() {
@@ -21,28 +19,22 @@ class LoginPresenter {
     
     func setRouteModel(model: LoginRouteModel) {
         self.routeModel = model
-
+        
         //Pass stuff to ViewModel from another VC
         let viewModel = LoginViewModel()
         viewController?.viewModel = viewModel
     }
+}
+
+extension LoginPresenter: LoginEventHandlerProtocol {
     
-    // MARK: Routing
-    
-     func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
+    func didTapSignUpButton() {
+//        viewController?.performSegue(withIdentifier: "SignUp", sender: viewController)
+//        viewController.router.routeToSignUp(segue: nil)
     }
 }
 
-extension LoginPresenter: LoginPresenterEventHandlerProtocol {
-    //Call the interactor
+extension LoginPresenter: LoginPresenterProtocol {
+    //Present something from the interactor
 }
 
-extension LoginPresenter: LoginPresenterProtocol {
-    //Show something from the interactor
-}
