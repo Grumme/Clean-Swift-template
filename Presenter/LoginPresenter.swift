@@ -1,12 +1,12 @@
 import UIKit
 
 class LoginPresenter {
-    weak var viewController: LoginViewController?
+    weak var viewController: LoginViewControllerProtocol?
     lazy var interactor: LoginInteractorProtocol = LoginInteractor(presenter: self)
     
     var routeModel: RouteModelProtocol?
     
-    init(viewController: LoginViewController) {
+    init(viewController: LoginViewControllerProtocol) {
         self.viewController = viewController
     }
     
@@ -29,7 +29,11 @@ class LoginPresenter {
 extension LoginPresenter: LoginEventHandlerProtocol {
     
     func didTapSignUpButton() {
-//        viewController?.performSegue(withIdentifier: "SignUp", sender: viewController)
+//        Segue
+//        let vc = viewController as? LoginViewController
+//        vc?.performSegue(withIdentifier: "SignUp", sender: viewController)
+//
+//        Routing
 //        viewController.router.routeToSignUp(segue: nil)
     }
 }
