@@ -2,7 +2,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    lazy var eventHandler: LoginPresenterEventHandlerProtocol = LoginPresenter(viewController: self)
+    lazy var eventHandler: LoginEventHandlerProtocol = LoginPresenter(viewController: self)
     
     var viewModel: LoginViewModel? {
         didSet {

@@ -1,6 +1,6 @@
 import Foundation
 
 protocol LoginViewControllerProtocol: class {
-    var eventHandler: LoginPresenterEventHandlerProtocol { get }
+    var eventHandler: LoginEventHandlerProtocol { get }
     var viewModel: LoginViewModel? { get set }
 }
