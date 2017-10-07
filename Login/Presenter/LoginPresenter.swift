@@ -3,7 +3,8 @@ import UIKit
 class LoginPresenter {
     weak var viewController: LoginViewControllerProtocol?
     lazy var interactor: LoginInteractorProtocol = LoginInteractor(presenter: self)
-    
+    var router: (NSObjectProtocol & LoginRouterProtocol & LoginDataPassing)?
+
     var routeModel: RouteModelProtocol?
     
     init(viewController: LoginViewControllerProtocol) {
@@ -27,6 +28,16 @@ class LoginPresenter {
 }
 
 extension LoginPresenter: LoginEventHandlerProtocol {
+    
+    func prepare(for segue: UIStoryboardSegue) {
+        if let scene = segue.identifier {
+            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+            if var router = router, router.responds(to: selector) {
+                router.routeModel = routeModel
+                router.perform(selector, with: segue)
+            }
+        }
+    }
     
     func didTapSignUpButton() {
 //        Segue
