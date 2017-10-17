@@ -17,23 +17,22 @@ class LoginRouter: NSObject, LoginDataPassing {
     // MARK: Passing data
     func passDataToSignUp(routeModel: RouteModelProtocol?, destination: Any) {
         guard let toVc = destination as? SomeViewController,
-            let toPresenter = toVc.eventHandler as? SomePresenter else {
+            let toPresenter = toVc.eventHandler as? SomePresenter,
+            let routeModel = routeModel as? SomeRouteModel else {
                 return
         }
         
-        toPresenter.routeModel = routeModel
+        toPresenter.setRouteModel(model: routeModel)
     }
 }
 
 extension LoginRouter: LoginRouterProtocol {
     func routeToSignUp(segue: UIStoryboardSegue?) {
         if let segue = segue {
-            guard let toVc = segue.destination as? SomeViewController,
-                  let toPresenter as? SomeViewController else {
+            guard let toVc = segue.destination as? SomeViewController else {
                 return
             }
             
-//            toPresenter.
             passDataToSignUp(routeModel: routeModel, destination: toVc)
             
         } else {
