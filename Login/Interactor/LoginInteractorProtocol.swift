@@ -2,8 +2,8 @@ import Foundation
 
 protocol LoginInteractorProtocol: class {
 
-//In
+    //In
 
-//Out
+    //Out
 
 }
