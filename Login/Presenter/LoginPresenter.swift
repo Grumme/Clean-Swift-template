@@ -30,8 +30,7 @@ extension LoginPresenter: LoginEventHandlerProtocol {
     func prepare(for segue: UIStoryboardSegue) {
         if let scene = segue.identifier {
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if var router = router, router.responds(to: selector) {
-                router.routeModel = routeModel
+            if let router = router, router.responds(to: selector) {
                 router.perform(selector, with: segue)
             }
         }
