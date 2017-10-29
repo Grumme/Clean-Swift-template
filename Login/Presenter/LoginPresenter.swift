@@ -12,10 +12,8 @@ class LoginPresenter {
     }
     
     func refreshViewModel() {
-        guard let viewModel = viewController?.viewModel else { return }
-        
-        let newViewModel = LoginViewModel()
-        viewController?.viewModel = newViewModel
+        let viewModel = LoginViewModel()
+        viewController?.viewModel = viewModel
     }
     
     func setRouteModel(model: LoginRouteModel) {

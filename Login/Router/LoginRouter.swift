@@ -9,42 +9,46 @@ class LoginRouter: NSObject, LoginDataPassing {
     weak var viewController: LoginViewController?
     var routeModel: RouteModelProtocol?
     
+    init(viewController: LoginViewController) {
+        self.viewController = viewController
+    }
+    
     // MARK: Routing
     func navigateToSignUp(source: LoginViewController, destination: SomeViewController) {
         source.navigationController?.pushViewController(destination, animated: true)
-    }
-    
-    // MARK: Passing data
-    func passDataToSignUp(routeModel: RouteModelProtocol?, destination: Any) {
-        guard let toVc = destination as? SomeViewController,
-            let toPresenter = toVc.eventHandler as? SomePresenter,
-            let routeModel = routeModel as? SomeRouteModel else {
-                return
-        }
-        
-        toPresenter.setRouteModel(model: routeModel)
     }
 }
 
 extension LoginRouter: LoginRouterProtocol {
     func routeToSignUp(segue: UIStoryboardSegue?) {
-        if let segue = segue {
-            guard let toVc = segue.destination as? SomeViewController else {
-                return
-            }
-            
-            passDataToSignUp(routeModel: routeModel, destination: toVc)
-            
-        } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            guard let fromVc = viewController,
-                let toVc = storyboard.instantiateViewController(withIdentifier: "SomeViewController") as? SomeViewController else {
-                    return
-            }
-            
-            passDataToSignUp(routeModel: routeModel, destination: toVc)
-            navigateToSignUp(source: fromVc, destination: toVc)
-        }
+        //Segue
+//        guard let toVc = segue?.destination as? SomeViewController,
+//            let toEventHandler = toVc.eventHandler as? SomePresenter,
+//            let routeModel = routeModel as? SomeRouteModel else {
+//                print("Error: Could not segue to SomeViewController")
+//                return
+//        }
+//
+//        print("Route: From Main to SomeViewController")
+//
+//        let router = SomeRouter(viewController: toVc)
+//        toEventHandler.router = router
+//        toEventHandler.setRouteModel(model: routeModel)
+        
+        //Routing
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//        guard let fromVc = viewController as? LoginViewController,
+//            let toVc = storyboard.instantiateViewController(withIdentifier: "SomeViewController") as? SomeViewController,
+//            let toEventHandler = toVc.eventHandler as? SomePresenter else {
+//                assertionFailure("Could not instantiate rootViewController")
+//                return
+//        }
+//
+//        let router = SomeRouter(viewController: toVc)
+//        toEventHandler.router = router
+//
+//        navigateToSignUp(source: fromVc, destination: toVc)
     }
 }
 

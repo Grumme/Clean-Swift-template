@@ -12,22 +12,13 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setup()
-    }
-    
-    func setup() {
-        let viewController = self
-        let router = LoginRouter()
-        let loginPresenter = eventHandler as! LoginPresenter
-        loginPresenter.router = router
-        router.viewController = viewController
     }
     
     // MARK: Interface Builder Outlets
     
     // MARK: Interface Builder Actions
     
+    // MARK: Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         eventHandler.prepare(for: segue)
     }
@@ -35,6 +26,7 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController {
     func refresh() {
+        assert(Thread.isMainThread)
         //Do something
     }
 }
