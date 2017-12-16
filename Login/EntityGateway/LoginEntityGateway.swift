@@ -2,7 +2,7 @@ import Foundation
 
 class LoginEntityGateway {
     weak var interactor: LoginInteractorProtocol?
-    lazy var storage = AppStorage.self
+    lazy var storage = AppContext.storage
     lazy var config = AppContext.configuration
 
     init(interactor: LoginInteractorProtocol) {
