@@ -38,11 +38,10 @@ extension LoginPresenter: LoginEventHandlerProtocol {
     
     func didTapSignUpButton() {
 //        Segue
-//        let vc = viewController as? LoginViewController
-//        vc?.performSegue(withIdentifier: "SignUp", sender: viewController)
+//        viewController?.performSegue(withIdentifier: "SignUp", sender: viewController)
 //
 //        Routing
-//        viewController.router.routeToSignUp(segue: nil)
+//        router?.routeToSignUp(segue: nil)
     }
 }
 
