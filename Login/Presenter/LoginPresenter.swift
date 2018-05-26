@@ -3,12 +3,20 @@ import UIKit
 class LoginPresenter {
     weak var viewController: LoginViewControllerProtocol?
     lazy var interactor: LoginInteractorProtocol = LoginInteractor(presenter: self)
-    var router: (NSObjectProtocol & LoginRouterProtocol & LoginDataPassing)?
+    lazy var router: (NSObjectProtocol & LoginRouterProtocol)? = self.setupRouter()
 
     var routeModel: RouteModelProtocol?
     
     init(viewController: LoginViewControllerProtocol) {
         self.viewController = viewController
+    }
+
+    func setupRouter() -> (NSObjectProtocol & LoginRouterProtocol)? {
+        if let view = self.viewController as? LoginViewController {
+            return LoginRouter(viewController: view)
+        } else {
+            return nil
+        }
     }
     
     func refreshViewModel() {

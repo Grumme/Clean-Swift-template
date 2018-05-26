@@ -1,21 +1,13 @@
 import UIKit
 
-protocol LoginDataPassing {
-    var routeModel: RouteModelProtocol? { get set }
-}
-
-class LoginRouter: NSObject, LoginDataPassing {
+class LoginRouter: NSObject {
     
     weak var viewController: LoginViewController?
     var routeModel: RouteModelProtocol?
     
     init(viewController: LoginViewController) {
         self.viewController = viewController
-    }
-    
-    // MARK: Routing
-    func navigateToSignUp(source: LoginViewController, destination: SomeViewController) {
-        source.navigationController?.pushViewController(destination, animated: true)
+        super.init()
     }
 }
 
@@ -48,7 +40,8 @@ extension LoginRouter: LoginRouterProtocol {
 //        let router = SomeRouter(viewController: toVc)
 //        toEventHandler.router = router
 //
-//        navigateToSignUp(source: fromVc, destination: toVc)
+//        fromVc.navigationController?.pushViewController(toVc, animated: true)
+
     }
 }
 
