@@ -1,9 +1,14 @@
+//
+//  Created by Jakob Grumsen.
+//  Copyright © 2018 Grumsen Development ApS. All rights reserved.
+//
+
 import UIKit
 
 class LoginPresenter {
     weak var viewController: LoginViewControllerProtocol?
     lazy var interactor: LoginInteractorProtocol = LoginInteractor(presenter: self)
-    lazy var router: (NSObjectProtocol & LoginRouterProtocol)? = self.setupRouter()
+    lazy var router: (NSObjectProtocol & LoginRouterProtocol & LoginRouteModelProtocol)? = self.setupRouter()
 
     var routeModel: RouteModelProtocol?
     
@@ -11,7 +16,7 @@ class LoginPresenter {
         self.viewController = viewController
     }
 
-    func setupRouter() -> (NSObjectProtocol & LoginRouterProtocol)? {
+    func setupRouter() -> (NSObjectProtocol & LoginRouterProtocol & LoginRouteModelProtocol)? {
         if let view = self.viewController as? LoginViewController {
             return LoginRouter(viewController: view)
         } else {
@@ -26,10 +31,6 @@ class LoginPresenter {
     
     func setRouteModel(model: LoginRouteModel) {
         self.routeModel = model
-        
-        //Pass stuff to ViewModel from another VC
-        let viewModel = LoginViewModel()
-        viewController?.viewModel = viewModel
     }
 }
 
@@ -54,6 +55,6 @@ extension LoginPresenter: LoginEventHandlerProtocol {
 }
 
 extension LoginPresenter: LoginPresenterProtocol {
-    //Present something from the interactor
+    
 }
 
