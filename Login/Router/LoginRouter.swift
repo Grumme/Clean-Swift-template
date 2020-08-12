@@ -7,13 +7,8 @@ import UIKit
 
 class LoginRouter: NSObject, LoginRouteModelProtocol {
     
-    weak var viewController: LoginViewController?
     var routeModel: RouteModelProtocol?
     
-    init(viewController: LoginViewController) {
-        self.viewController = viewController
-        super.init()
-    }
 }
 
 extension LoginRouter: LoginRouterProtocol {
