@@ -42,6 +42,7 @@ class LoginPresenter {
     }
 }
 
+// MARK: Event Handler
 extension LoginPresenter: LoginEventHandlerProtocol {
     func willAppear() {
         refreshViewModel()
@@ -65,6 +66,7 @@ extension LoginPresenter: LoginEventHandlerProtocol {
     }
 }
 
+// MARK: Presenter
 extension LoginPresenter: LoginPresenterProtocol {
     
 }
