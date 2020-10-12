@@ -43,6 +43,9 @@ class LoginPresenter {
 }
 
 extension LoginPresenter: LoginEventHandlerProtocol {
+    func willAppear() {
+        refreshViewModel()
+    }
     
     func prepare(for segue: UIStoryboardSegue) {
         if let scene = segue.identifier {

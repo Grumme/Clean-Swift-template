@@ -8,16 +8,21 @@ import UIKit
 class LoginViewController: UIViewController {
     
     lazy var eventHandler: LoginEventHandlerProtocol = LoginPresenter(viewController: self)
-    
     var viewModel: LoginViewModel? {
         didSet {
             refresh()
         }
     }
     
+    // MARK: Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        eventHandler.willAppear()
     }
     
     // MARK: Interface Builder Outlets
