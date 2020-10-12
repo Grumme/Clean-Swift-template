@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeViews()
     }
     
     // MARK: Interface Builder Outlets
@@ -29,13 +30,22 @@ class LoginViewController: UIViewController {
     }
 }
 
+// MARK: Initialization
 extension LoginViewController {
-    func refresh() {
+    private func initializeViews() {
+        //Do something
+    }
+}
+
+// MARK: Refreshing
+extension LoginViewController {
+    private func refresh() {
         assert(Thread.isMainThread)
         //Do something
     }
 }
 
+// MARK: View Controller Protocol
 extension LoginViewController: LoginViewControllerProtocol {
     
 }

@@ -10,7 +10,15 @@ class LoginPresenter {
     lazy var interactor: LoginInteractorProtocol = LoginInteractor(presenter: self)
     lazy var router: (NSObjectProtocol & LoginRouterProtocol & LoginRouteModelProtocol)? = self.setupRouter()
 
-    var routeModel: RouteModelProtocol?
+    var routeModel: RouteModelProtocol? {
+        didSet {
+            guard let routeModel = routeModel as? LoginRouteModel else { return }
+            // Initialize properties passed from route model
+            refreshViewModel()
+        }
+    }
+    
+    // MARK: Routing data
     
     init(viewController: LoginViewControllerProtocol) {
         self.viewController = viewController
