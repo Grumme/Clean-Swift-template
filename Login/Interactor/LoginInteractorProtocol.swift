@@ -7,8 +7,8 @@ import Foundation
 
 protocol LoginInteractorProtocol: class {
 
-    //In
+    // MARK: In
 
-    //Out
+    // MARK: Out
 
 }

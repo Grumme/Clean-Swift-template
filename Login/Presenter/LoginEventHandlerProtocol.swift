@@ -7,5 +7,6 @@ import Foundation
 import UIKit
 
 protocol LoginEventHandlerProtocol {
+    func willAppear()
     func prepare(for segue: UIStoryboardSegue)
 }

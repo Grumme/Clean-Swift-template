@@ -8,15 +8,21 @@ import UIKit
 class LoginViewController: UIViewController {
     
     lazy var eventHandler: LoginEventHandlerProtocol = LoginPresenter(viewController: self)
-    
     var viewModel: LoginViewModel? {
         didSet {
             refresh()
         }
     }
     
+    // MARK: Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        eventHandler.willAppear()
     }
     
     // MARK: Interface Builder Outlets
@@ -29,13 +35,22 @@ class LoginViewController: UIViewController {
     }
 }
 
+// MARK: Initialization
 extension LoginViewController {
-    func refresh() {
+    private func initializeViews() {
+        //Do something
+    }
+}
+
+// MARK: Refreshing
+extension LoginViewController {
+    private func refresh() {
         assert(Thread.isMainThread)
         //Do something
     }
 }
 
+// MARK: View Controller Protocol
 extension LoginViewController: LoginViewControllerProtocol {
     
 }

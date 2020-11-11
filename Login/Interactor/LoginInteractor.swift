@@ -18,7 +18,7 @@ class LoginInteractor {
 
 extension LoginInteractor: LoginInteractorProtocol {
     
-    //In
+    // MARK: In
     
-    //Out
+    // MARK: Out
 }
