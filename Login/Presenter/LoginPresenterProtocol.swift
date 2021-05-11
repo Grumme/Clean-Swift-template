@@ -5,6 +5,6 @@
 
 import Foundation
 
-protocol LoginPresenterProtocol: class {
+protocol LoginPresenterProtocol: AnyObject {
     
 }

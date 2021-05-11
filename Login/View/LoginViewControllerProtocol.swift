@@ -5,7 +5,7 @@
 
 import Foundation
 
-protocol LoginViewControllerProtocol: class {
+protocol LoginViewControllerProtocol: AnyObject {
     var eventHandler: LoginEventHandlerProtocol { get }
     var viewModel: LoginViewModel? { get set }
     func performSegue(withIdentifier: String, sender: Any?)
