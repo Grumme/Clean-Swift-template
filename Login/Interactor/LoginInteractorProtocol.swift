@@ -5,7 +5,7 @@
 
 import Foundation
 
-protocol LoginInteractorProtocol: class {
+protocol LoginInteractorProtocol: AnyObject {
 
     // MARK: In
 
