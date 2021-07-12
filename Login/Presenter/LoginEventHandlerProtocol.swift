@@ -7,9 +7,9 @@ import Foundation
 import UIKit
 
 protocol LoginEventHandlerProtocol {
+    func prepare(for segue: UIStoryboardSegue)
+    
     func didLoad()
     func willAppear()
     func traitCollectionDidChange()
-
-    func prepare(for segue: UIStoryboardSegue)
 }
