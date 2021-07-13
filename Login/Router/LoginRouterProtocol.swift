@@ -6,5 +6,5 @@
 import UIKit
 
 @objc protocol LoginRouterProtocol {
-    var routeModel: RouteModelProtocol? { get set }
+
 }

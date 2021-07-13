@@ -20,6 +20,8 @@ class LoginViewController: UIViewController {
 
     // MARK: Variables
 
+    // MARK: UI Objects
+
     // MARK: Interface Builder Outlets
 
     // MARK: Interface Builder Actions
@@ -28,7 +30,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeViews()
-        evenhtHandler.didLoad()
+        eventHandler.didLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +52,7 @@ class LoginViewController: UIViewController {
 // MARK: Initialization
 extension LoginViewController {
     private func initializeViews() {
-        //Do something
+        // Initialize ViewController on load
     }
 }
 
@@ -64,12 +66,14 @@ extension LoginViewController {
 
 // MARK: View Controller Protocol
 extension LoginViewController: LoginViewControllerProtocol {
-    private func languageRefresh() {
+    // MARK: Language Refreshing
+    func languageRefresh() {
         assert(Thread.isMainThread)
         // Refresh ViewController on language change
     }
 
-    private func themeRefresh() {
+    // MARK: Theme Refreshing
+    func themeRefresh() {
         assert(Thread.isMainThread)
         // Refresh ViewController on theme change
     }

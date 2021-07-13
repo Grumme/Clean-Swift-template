@@ -8,9 +8,8 @@ import Foundation
 protocol LoginViewControllerProtocol: AnyObject {
     var eventHandler: LoginEventHandlerProtocol { get }
     var viewModel: LoginViewModel? { get set }
+    func performSegue(withIdentifier: String, sender: Any?)
 
     func languageRefresh()
     func themeRefresh()
-
-    func performSegue(withIdentifier: String, sender: Any?)
 }
