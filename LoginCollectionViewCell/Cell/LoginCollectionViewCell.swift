@@ -68,6 +68,7 @@ extension LoginCollectionViewCell {
   private func setupSubviewsConstraints() {
   }
 }
+
 // MARK: Resetting
 extension LoginCollectionViewCell {
   private func resetCell() {

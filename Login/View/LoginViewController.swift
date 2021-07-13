@@ -20,6 +20,8 @@ class LoginViewController: UIViewController {
 
     // MARK: Variables
 
+    // MARK: UI Objects
+
     // MARK: Interface Builder Outlets
 
     // MARK: Interface Builder Actions
