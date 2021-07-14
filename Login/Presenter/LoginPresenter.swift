@@ -56,6 +56,7 @@ extension LoginPresenter: LoginEventHandlerProtocol {
     }
 
     func didLoad() {
+        viewController?.languageRefresh()
         // Place here component's initial load code
     }
 
