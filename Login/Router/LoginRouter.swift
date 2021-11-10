@@ -5,9 +5,10 @@
 
 import UIKit
 
-class LoginRouter: NSObject {
+class LoginRouter: NSObject, RouterProtocol {
 
     weak var viewController: LoginViewController?
+    var routeModel: RouteModelProtocol?
 
     init(viewController: LoginViewController) {
         self.viewController = viewController
@@ -16,5 +17,5 @@ class LoginRouter: NSObject {
 }
 
 extension LoginRouter: LoginRouterProtocol {
-    var routeModel: RouteModelProtocol?
+    
 }
