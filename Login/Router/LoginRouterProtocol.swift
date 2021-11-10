@@ -6,9 +6,5 @@
 import UIKit
 
 @objc protocol LoginRouterProtocol {
-    func routeToSignUp(segue: UIStoryboardSegue?)
-}
 
-protocol LoginRouteModelProtocol {
-    var routeModel: RouteModelProtocol? { get set }
 }

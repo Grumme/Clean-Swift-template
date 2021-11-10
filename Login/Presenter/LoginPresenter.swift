@@ -8,7 +8,7 @@ import UIKit
 class LoginPresenter {
     weak var viewController: LoginViewControllerProtocol?
     lazy var interactor: LoginInteractorProtocol = LoginInteractor(presenter: self)
-    lazy var router: (NSObjectProtocol & LoginRouterProtocol & LoginRouteModelProtocol)? = self.setupRouter()
+    lazy var router: (NSObjectProtocol & LoginRouterProtocol & RouterProtocol)? = self.setupRouter()
 
     var routeModel: RouteModelProtocol? {
         didSet {
@@ -17,26 +17,28 @@ class LoginPresenter {
             refreshViewModel()
         }
     }
-    
+
     // MARK: Routing data
-    
+
+    // MARK: Fetched data
+
     init(viewController: LoginViewControllerProtocol) {
         self.viewController = viewController
     }
 
-    func setupRouter() -> (NSObjectProtocol & LoginRouterProtocol & LoginRouteModelProtocol)? {
+    func setupRouter() -> (NSObjectProtocol & LoginRouterProtocol & RouterProtocol)? {
         if let view = self.viewController as? LoginViewController {
             return LoginRouter(viewController: view)
         } else {
             return nil
         }
     }
-    
+
     func refreshViewModel() {
         let viewModel = LoginViewModel()
         viewController?.viewModel = viewModel
     }
-    
+
     func setRouteModel(model: LoginRouteModel) {
         self.routeModel = model
     }
@@ -44,10 +46,6 @@ class LoginPresenter {
 
 // MARK: Event Handler
 extension LoginPresenter: LoginEventHandlerProtocol {
-    func willAppear() {
-        refreshViewModel()
-    }
-    
     func prepare(for segue: UIStoryboardSegue) {
         if let scene = segue.identifier {
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
@@ -56,18 +54,23 @@ extension LoginPresenter: LoginEventHandlerProtocol {
             }
         }
     }
-    
-    func didTapSignUpButton() {
-//        Segue
-//        viewController?.performSegue(withIdentifier: "SignUp", sender: viewController)
-//
-//        Routing
-//        router?.routeToSignUp(segue: nil)
+
+    func didLoad() {
+        viewController?.languageRefresh()
+        // Place here component's initial load code
+    }
+
+    func willAppear() {
+        viewController?.languageRefresh()
+    }
+
+    func traitCollectionDidChange() {
+        viewController?.themeRefresh()
     }
 }
 
 // MARK: Presenter
 extension LoginPresenter: LoginPresenterProtocol {
-    
+
 }
 
